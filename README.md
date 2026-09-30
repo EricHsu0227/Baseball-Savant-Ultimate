@@ -3,6 +3,16 @@
 A SwiftUI client for Baseball Savant's public CSV exports that surfaces **every column
 the server returns**, including splits the site never displays (e.g. wOBA vs LHP/RHP).
 
+## Web app (recommended way to run it)
+```
+cd web && npm start        # http://localhost:3000, needs Node 18+, no dependencies
+npm test                   # unit tests + proxy test against a fake Savant
+```
+`web/server.js` serves the page and proxies `/savant/*` to baseballsavant.mlb.com (Savant sends no CORS
+headers, so a browser can't call it directly). It allowlists paths and caches responses for 5 minutes.
+Set `SAVANT_BASE` to point at another upstream (used by the tests). Deploy anywhere that runs Node.
+
+## iOS app (secondary)
 ## Layout
 - `Sources/SavantKit` – CSV parser, dynamic `DataTable`, endpoint catalog, `StatcastQuery`
   builder, `SavantClient` (caching, parallel splits). Pure Swift, unit-tested.
