@@ -1,0 +1,17 @@
+# Generate the Xcode project on a Mac:  brew install xcodegen && xcodegen
+name: SavantUltimate
+options:
+  deploymentTarget: { iOS: "16.0" }
+packages:
+  SavantKit: { path: . }
+targets:
+  SavantUltimate:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: SavantKit
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.savantultimate
+      GENERATE_INFOPLIST_FILE: YES
+      INFOPLIST_KEY_UILaunchScreen_Generation: YES
